@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     subscribed: { type: DataTypes.BOOLEAN, defaultValue: true },
     unsubscribeKey: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4 },
     mostRecentStatus: { type: DataTypes.STRING, defaultValue: 'unconfirmed' }, // bounce:permanent, bounce:transient, complaint
-    additionalData: { type: DataTypes.JSONB, defaultValue: {} }
+    additionalData: { type: DataTypes.JSON }
   }, {
       indexes: [
         {

@@ -8,7 +8,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "mysql": "mysql  -h 'localhost' -u root mail_for_good -p'' -e 'show tables;'",
+    "mysql": "mysql  -h '10.1.0.73' -u gloryque mail_for_good -p'intranet@quezx' -e 'show tables;'",
     "clear-db": "sequelize db:drop; sequelize db:create",
     "migrate": "DEBUG=s.  *sequelize db:migrate; DEBUG=s.*  sequelize db:seed:all",
     "check-env-file": "python ./tools/setup/initial_setup.py",

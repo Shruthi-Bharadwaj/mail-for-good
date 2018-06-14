@@ -13,18 +13,22 @@ module.exports = () => {
   // If there are no users then the database is
   // probably fresh + there is no need to
   // update anything
-  return User.findAll({ raw: true })
-    .then(users => {
-      if (users.length) {
-        Campaign.update({
-          status: 'interrupted'
-        }, {
-          where: { status: 'sending' }
-        });
-      }
-      return null;
-    })
-    // If the promise is rejected, the table doesn't exist. This is fine, as it may be the first
-    // time the app was run. We can discard the error.
-    .catch(() => {});
+  console.log('Campaign ==== ', Campaign);
+  if(User && Campaign) {
+    return User.findAll({ raw: true })
+      .then(users => {
+        if (users.length) {
+          return Campaign.update({
+            status: 'interrupted'
+          }, {
+            where: { status: 'sending' }
+          });
+        }
+        return null;
+      })
+      // If the promise is rejected, the table doesn't exist. This is fine, as it may be the first
+      // time the app was run. We can discard the error.
+      .catch((error) => {console.log('this the error caused::: ', error)});
+  }
+
 };

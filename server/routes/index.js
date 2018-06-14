@@ -24,6 +24,7 @@ const templates = require('./templates');
 const campaigns = require('./campaigns');
 const accountsManagement = require('./accountsManagement')
 const permissions = require('./permissions');
+const contacts = require('./contacts');
 
 module.exports = (app, passport, io, redis) => {
 
@@ -55,6 +56,8 @@ module.exports = (app, passport, io, redis) => {
 
   /* Permissions */
   permissions(app);
+
+  app.use('/api/contacts', contacts);
 
   /* Settings */
   // Get boolean values designating assigned fields

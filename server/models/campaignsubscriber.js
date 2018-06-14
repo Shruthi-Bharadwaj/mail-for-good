@@ -23,9 +23,9 @@ module.exports = function(sequelize, DataTypes) {
         // }
       ]
   });
-    // campaignsubscriber.associate = function (models) {
-    //     campaignsubscriber.belongsTo(models.campaign, {foreignKeyConstraint: true});
-    //     campaignsubscriber.belongsTo(models.listsubscriber, {foreignKeyConstraint: true});
-    // }
+  campaignsubscriber.associate = function (models) {
+    campaignsubscriber.belongsTo(models.campaign, {foreignKeyConstraint: true});
+    campaignsubscriber.belongsTo(models.listsubscriber, {foreignKeyConstraint: true});
+  }
   return campaignsubscriber;
 };

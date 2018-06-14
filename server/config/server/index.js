@@ -18,7 +18,12 @@ const server = http.Server(app);
 
 module.exports = () => {
   // Sync the db
-  configureSequelize();
+  configureSequelize().then(() => {
+    // Start the server after correcting the database state
+    restoreDbState();
+  }).catch((error) => {
+    console.log('Error in syncing the db :: ', error);
+  })
   // Use webpack deb middleware in development mode
   configureWebpackDevMiddleware(app);
 
@@ -48,8 +53,6 @@ module.exports = () => {
   // Routes
   routes(app, passport, io, { client, subscriber, publisher });
 
-  // Start the server after correcting the database state
-  restoreDbState();
 
   return server;
 };
